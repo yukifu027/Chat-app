@@ -92,8 +92,8 @@
 				BBCFD27E24AD740600B994FE /* SceneDelegate.swift */,
 				BBCFD28024AD740600B994FE /* ViewController.swift */,
 				BB188D5024B199DB003F88A3 /* RegisterViewController.swift */,
-				BB7434EB24B1AE4B00292900 /* ChatViewController.swift */,
 				BB7434ED24B1AF4200292900 /* LoginViewController.swift */,
+				BB7434EB24B1AE4B00292900 /* ChatViewController.swift */,
 			);
 			path = Controoler;
 			sourceTree = "<group>";

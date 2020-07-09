@@ -103,8 +103,11 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.messageLabel.text = chatArray[indexPath.row].message
-        cell.messageLabel.layer.cornerRadius = 15
+        cell.messageLabel.layer.cornerRadius = 10
         cell.messageLabel.layer.masksToBounds = true
+        cell.backgroundColor = UIColor.clear
+        // cell内のcontentViewの背景を透過
+        cell.contentView.backgroundColor = UIColor.clear
         
         
         cell.userNameLabel.text = chatArray[indexPath.row].sender
