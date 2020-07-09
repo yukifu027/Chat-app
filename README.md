@@ -41,4 +41,22 @@ Swift/Xcode/Github/Firebase
 </dl>
 
 # DB設計
+## usersテーブル
 
+|Column|Type|Options|
+|------|----|-------|
+|email|string|null: false|
+|password|string|null: false|
+
+### Association
+- has_many :messages
+
+## messagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|message|string|null: false|
+|sender|integer|null: false, foreign_key: :true|
+
+### Association
+- belongs_to :user
