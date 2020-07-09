@@ -22,7 +22,7 @@ Swiftの新しい項目としてtableview、Lottieの使い方、Firebaseを学�
 
 ## 2 メッセージを送信
 <p align="center">
-  <img src="" width="250px;"/>
+  <img src="2a6ac9404ed18f8d29c508f782b23fa2.gif" width="250px;"/>
 </p>
 
 # 工夫したポイント
