@@ -41,7 +41,9 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         NotificationCenter.default.addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_ :)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
 //        FirebaseからデータをFetch取得する
+        fetchChatData()
         
+        tableView.separatorStyle = .none
         
         
     }
@@ -101,6 +103,10 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomCell
         cell.messageLabel.text = chatArray[indexPath.row].message
+        cell.messageLabel.layer.cornerRadius = 15
+        cell.messageLabel.layer.masksToBounds = true
+        
+        
         cell.userNameLabel.text = chatArray[indexPath.row].sender
         cell.iconImageView.image = UIImage(named: "dogAvatarImage")
         
@@ -116,12 +122,23 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.size.height/10
+    }
+    
     
     @IBAction func sendAction(_ sender: Any) {
         
         messageTextField.endEditing(true)
         messageTextField.isEnabled = false
         sendButton.isEnabled = false
+        
+        if messageTextField.text!.count > 15{
+            
+            print("15文字以上です")
+            return
+            
+        }
         
         let chatDB = Database.database().reference().child("chats")
 
@@ -152,7 +169,21 @@ class ChatViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func fetchChatData(){
+//        どこから引っ張ってくる？
+        let fetchDataRef = Database.database().reference().child("chats")
         
+//        新しく更新があったときだけ取得
+        fetchDataRef.observe(.childAdded) { (snapShot) in
+            let snapShotData = snapShot.value as! AnyObject
+            let text = snapShotData.value(forKey: "message")
+            let sender = snapShotData.value(forKey: "sender")
+            
+            let message = Message()
+            message.message = text as! String
+            message.sender = sender as! String
+            self.chatArray.append(message)
+            self.tableView.reloadData()
+        }
     }
     
     
