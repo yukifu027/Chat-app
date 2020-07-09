@@ -16,7 +16,7 @@ Swiftの新しい項目としてtableview、Lottieの使い方、Firebaseを学�
 # DEMO
 ## 1 ログイン or 新規登録
 <p align="center">
-  <img src="" width="250px;"/>
+  <img src="スクリーンショット 2020-07-09 17.47.06.png" width="250px;"/>
 </p>
 
 ## 2 メッセージを送信
